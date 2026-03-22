@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Holy Sheet! Baking</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body:    ['"DM Sans"', 'sans-serif'],
+          },
+          colors: {
+            cream: '#F5F0E8',
+            rust:  '#C4511A',
+            amber: '#C4861A',
+            mocha: '#3B2F2F',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+  <style>
+    [x-cloak] { display: none !important; }
+  </style>
+</head>
+
+<body class="font-body bg-cream text-mocha">
+
+  <!-- =====================
+       HEADER
+       ===================== -->
+  <header x-data="{ open: false }" class="bg-cream shadow-sm px-6 py-4 sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+
+      <a href="/index.html" class="flex flex-col leading-tight">
+        <span class="font-display text-2xl font-bold text-mocha">Holy Sheet!</span>
+        <span class="font-body text-xs font-semibold tracking-widest text-mocha/50 uppercase">Veteran Operated</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="/index.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">Home</a>
+        <a href="/menu.html"    class="font-body text-mocha hover:text-amber transition-colors duration-200">Menu</a>
+        <a href="/about.html"   class="font-body text-rust font-medium">About</a>
+        <a href="/contact.html" class="font-body text-sm text-cream bg-rust px-4 py-2 rounded-full hover:bg-amber transition-colors duration-200">Order Now</a>
+      </nav>
+
+      <button @click="open = !open" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
+        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? 'rotate-45 translate-y-2' : ''"></span>
+        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? 'opacity-0' : ''"></span>
+        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? '-rotate-45 -translate-y-2' : ''"></span>
+      </button>
+    </div>
+
+    <div x-show="open" x-cloak x-transition
+         class="md:hidden flex flex-col gap-4 pt-4 pb-2 px-2 border-t border-mocha/10 mt-3">
+      <a href="/index.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">Home</a>
+      <a href="/menu.html"    class="font-body text-mocha hover:text-amber transition-colors duration-200">Menu</a>
+      <a href="/about.html"   class="font-body text-rust font-medium">About</a>
+      <a href="/contact.html" class="font-body text-mocha hover:text-amber transition-colors duration-200">Order Now</a>
+    </div>
+  </header>
+
+  <!-- =====================
+       PAGE BANNER
+       ===================== -->
+  <section class="bg-mocha text-cream py-16 px-6 text-center">
+    <p class="font-body text-amber text-sm tracking-widest uppercase mb-2">Who We Are</p>
+    <h1 class="font-display text-5xl font-bold">Our Story</h1>
+    <p class="font-body text-cream/65 mt-4 max-w-md mx-auto">
+      A small bakery with a big heart — built on service, community, and a deep love for good food.
+    </p>
+  </section>
+
+  <!-- =====================
+       MAIN STORY SECTION
+       Replace placeholder text with your real story.
+       ===================== -->
+  <main>
+
+    <!-- Story -->
+    <section class="py-20 px-6">
+      <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-16">
+
+        <!-- PHOTO PLACEHOLDER — replace this div with:
+             <img src="/assets/photo-owner.jpg" alt="Owner"
+                  class="w-72 h-72 rounded-3xl object-cover shrink-0"> -->
+        <div class="w-72 h-72 rounded-3xl bg-rust/15 border-2 border-dashed border-rust/30 flex flex-col items-center justify-center gap-2 shrink-0 select-none">
+          <span class="text-3xl">📷</span>
+          <p class="text-xs text-mocha/40 font-body text-center px-6">/assets/photo-owner.jpg</p>
+        </div>
+
+        <!-- Story text -->
+        <div>
+          <p class="font-body text-rust text-sm tracking-widest uppercase mb-2">How It Started</p>
+          <h2 class="font-display text-4xl font-bold mb-5 leading-tight">
+            From the barracks<br/>to the bakery.
+          </h2>
+          <!-- ↓↓↓ Replace this with your real story ↓↓↓ -->
+          <div class="font-body text-mocha/75 space-y-4 leading-relaxed">
+            <p>
+              Holy Sheet! Baking started with a cast iron pan, a dog-eared recipe notebook, and a lot of
+              time between deployments. What began as a way to unwind turned into a genuine passion —
+              and eventually, a calling.
+            </p>
+            <p>
+              After years of service, [Your Name] returned home and decided to do something simple:
+              feed people really well. No shortcuts, no preservatives, no corner-cutting. Just honest
+              ingredients, time, and care — the same values that define good service.
+            </p>
+            <p>
+              Every loaf, every pastry, every order is made by hand in a licensed cottage kitchen.
+              It's a one-person operation, and that's exactly the point.
+            </p>
+          </div>
+          <!-- ↑↑↑ Replace this with your real story ↑↑↑ -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="h-px bg-mocha/10"></div>
+    </div>
+
+    <!-- Values -->
+    <section class="py-20 px-6">
+      <div class="max-w-5xl mx-auto">
+
+        <div class="text-center mb-14">
+          <p class="font-body text-rust text-sm tracking-widest uppercase mb-2">What We Stand For</p>
+          <h2 class="font-display text-4xl font-bold">The Holy Sheet! Promise</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <!-- Value Card — duplicate to add more -->
+          <div class="text-center px-4">
+            <div class="text-5xl mb-4">🌾</div>
+            <h3 class="font-display text-xl font-semibold mb-2">Real Ingredients</h3>
+            <p class="font-body text-sm text-mocha/65 leading-relaxed">
+              We source quality ingredients and never substitute with fillers, artificial flavors,
+              or preservatives. What's on the label is what's in the bag.
+            </p>
+          </div>
+
+          <div class="text-center px-4">
+            <div class="text-5xl mb-4">🤝</div>
+            <h3 class="font-display text-xl font-semibold mb-2">Community First</h3>
+            <p class="font-body text-sm text-mocha/65 leading-relaxed">
+              We're your neighbors. We donate to local food drives, support veteran organizations,
+              and believe good food should be accessible to everyone.
+            </p>
+          </div>
+
+          <div class="text-center px-4">
+            <div class="text-5xl mb-4">✋</div>
+            <h3 class="font-display text-xl font-semibold mb-2">Made by Hand</h3>
+            <p class="font-body text-sm text-mocha/65 leading-relaxed">
+              No industrial equipment, no assembly lines. Every item is shaped, proofed, and
+              baked by hand — which means every one is a little different, and a lot of love.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Veteran Badge Section -->
+    <section class="py-16 px-6 bg-mocha text-cream">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="text-5xl mb-4">🎖️</div>
+        <h2 class="font-display text-3xl font-bold mb-4">Veteran Operated</h2>
+        <p class="font-body text-cream/70 leading-relaxed max-w-xl mx-auto">
+          Holy Sheet! Baking is proudly owned and operated by a U.S. military veteran.
+          Service, discipline, and integrity aren't just words — they're baked into everything we make.
+          When you order from us, you're supporting a veteran small business.
+        </p>
+        <!-- Optional: Add a veteran-owned badge image here -->
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="py-20 px-6 bg-cream">
+      <div class="max-w-3xl mx-auto">
+
+        <div class="text-center mb-12">
+          <p class="font-body text-rust text-sm tracking-widest uppercase mb-2">Got Questions?</p>
+          <h2 class="font-display text-4xl font-bold">Common Questions</h2>
+        </div>
+
+        <!-- FAQ Item — Alpine.js accordion, duplicate to add more -->
+        <div x-data="{ open: false }" class="border-b border-mocha/15 py-5">
+          <button @click="open = !open"
+                  class="w-full flex items-center justify-between text-left font-display text-lg font-semibold text-mocha">
+            <span>How far in advance do I need to order?</span>
+            <span class="text-rust transition-transform duration-200" :class="open ? 'rotate-45' : ''">+</span>
+          </button>
+          <div x-show="open" x-cloak x-transition
+               class="pt-3 font-body text-sm text-mocha/65 leading-relaxed">
+            Most orders require at least 48–72 hours of notice. Large custom orders (sheet cakes,
+            event packages) may need up to a week. When in doubt, reach out early — we'd rather
+            plan ahead than turn you away!
+          </div>
+        </div>
+
+        <div x-data="{ open: false }" class="border-b border-mocha/15 py-5">
+          <button @click="open = !open"
+                  class="w-full flex items-center justify-between text-left font-display text-lg font-semibold text-mocha">
+            <span>Do you offer delivery?</span>
+            <span class="text-rust transition-transform duration-200" :class="open ? 'rotate-45' : ''">+</span>
+          </button>
+          <div x-show="open" x-cloak x-transition
+               class="pt-3 font-body text-sm text-mocha/65 leading-relaxed">
+            Currently we offer local pickup only. Pickup location and times are confirmed
+            when your order is accepted. We're looking into local delivery options — stay tuned!
+          </div>
+        </div>
+
+        <div x-data="{ open: false }" class="border-b border-mocha/15 py-5">
+          <button @click="open = !open"
+                  class="w-full flex items-center justify-between text-left font-display text-lg font-semibold text-mocha">
+            <span>Can you accommodate dietary restrictions?</span>
+            <span class="text-rust transition-transform duration-200" :class="open ? 'rotate-45' : ''">+</span>
+          </button>
+          <div x-show="open" x-cloak x-transition
+               class="pt-3 font-body text-sm text-mocha/65 leading-relaxed">
+            We can accommodate some dietary needs on a case-by-case basis. Please note our kitchen
+            is not allergen-free and we work with gluten, dairy, eggs, and nuts regularly.
+            Always disclose any allergies in your order form — we'll let you know what we can do.
+          </div>
+        </div>
+
+        <div x-data="{ open: false }" class="border-b border-mocha/15 py-5">
+          <button @click="open = !open"
+                  class="w-full flex items-center justify-between text-left font-display text-lg font-semibold text-mocha">
+            <span>How do I pay?</span>
+            <span class="text-rust transition-transform duration-200" :class="open ? 'rotate-45' : ''">+</span>
+          </button>
+          <div x-show="open" x-cloak x-transition
+               class="pt-3 font-body text-sm text-mocha/65 leading-relaxed">
+            Payment is due at pickup. We accept cash, Venmo, and Zelle.
+            <!-- Update this with your real payment methods -->
+          </div>
+        </div>
+
+        <div x-data="{ open: false }" class="border-b border-mocha/15 py-5">
+          <button @click="open = !open"
+                  class="w-full flex items-center justify-between text-left font-display text-lg font-semibold text-mocha">
+            <span>What if I need to cancel or change my order?</span>
+            <span class="text-rust transition-transform duration-200" :class="open ? 'rotate-45' : ''">+</span>
+          </button>
+          <div x-show="open" x-cloak x-transition
+               class="pt-3 font-body text-sm text-mocha/65 leading-relaxed">
+            Please let us know as soon as possible if you need to cancel or modify. Cancellations
+            made more than 24 hours before pickup are no problem. Late cancellations may be subject
+            to a fee for large or custom orders where ingredients have already been purchased.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================
+       ORDER CTA
+       ===================== -->
+  <section class="py-16 px-6 bg-amber/10 border-y border-amber/20 text-center">
+    <p class="font-body text-rust text-sm tracking-widest uppercase mb-2">Sounds Good?</p>
+    <h2 class="font-display text-3xl font-bold text-mocha mb-4">Let's get baking for you.</h2>
+    <p class="font-body text-mocha/65 mb-8 max-w-sm mx-auto">
+      Browse the menu or jump straight to our order form.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/menu.html"
+         class="font-body font-medium border border-rust text-rust px-7 py-3 rounded-full hover:bg-rust hover:text-cream transition-colors duration-200">
+        See the Menu
+      </a>
+      <a href="/contact.html"
+         class="font-body font-medium bg-rust text-cream px-7 py-3 rounded-full hover:bg-mocha transition-colors duration-200">
+        Place an Order
+      </a>
+    </div>
+  </section>
+
+  <!-- =====================
+       FOOTER
+       ===================== -->
+  <footer class="bg-mocha text-cream py-14 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between gap-10">
+
+        <div>
+          <p class="font-display text-2xl font-bold">Holy Sheet!</p>
+          <p class="text-xs tracking-widest uppercase text-cream/50 mt-1 mb-3">Veteran Operated Cottage Bakery</p>
+          <p class="text-sm text-cream/60 max-w-xs">Small batches, big flavor. Handmade with love in [Your City, State].</p>
+        </div>
+
+        <nav class="flex flex-col gap-2 text-sm text-cream/70">
+          <p class="text-cream font-semibold mb-1 tracking-wide text-xs uppercase">Pages</p>
+          <a href="/index.html"   class="hover:text-amber transition-colors">Home</a>
+          <a href="/menu.html"    class="hover:text-amber transition-colors">Menu</a>
+          <a href="/about.html"   class="hover:text-amber transition-colors">About</a>
+          <a href="/contact.html" class="hover:text-amber transition-colors">Order Now</a>
+        </nav>
+
+        <div class="text-sm text-cream/70 space-y-2">
+          <p class="text-cream font-semibold mb-1 tracking-wide text-xs uppercase">Get in Touch</p>
+          <p>📍 Your City, State</p>
+          <p>📧 hello@holysheetbaking.xyz</p>
+          <p>📱 (555) 000-0000</p>
+        </div>
+
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-cream/10 text-xs text-cream/30 text-center">
+        © 2025 Holy Sheet! Baking · All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

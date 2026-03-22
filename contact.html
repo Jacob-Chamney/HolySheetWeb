@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order — Holy Sheet! Baking</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body:    ['"DM Sans"', 'sans-serif'],
+          },
+          colors: {
+            cream: '#F5F0E8',
+            rust:  '#C4511A',
+            amber: '#C4861A',
+            mocha: '#3B2F2F',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+  <style>
+    [x-cloak] { display: none !important; }
+
+    /* Input focus ring in brand color */
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #C4511A;
+    }
+  </style>
+</head>
+
+<body class="font-body bg-cream text-mocha">
+
+  <!-- =====================
+       HEADER
+       ===================== -->
+  <header x-data="{ open: false }" class="bg-cream shadow-sm px-6 py-4 sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+
+      <a href="/index.html" class="flex flex-col leading-tight">
+        <span class="font-display text-2xl font-bold text-mocha">Holy Sheet!</span>
+        <span class="font-body text-xs font-semibold tracking-widest text-mocha/50 uppercase">Veteran Operated</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="/index.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">Home</a>
+        <a href="/menu.html"    class="font-body text-mocha hover:text-amber transition-colors duration-200">Menu</a>
+        <a href="/about.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">About</a>
+        <a href="/contact.html" class="font-body text-sm text-cream bg-rust px-4 py-2 rounded-full">Order Now</a>
+      </nav>
+
+      <button @click="open = !open" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
+        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? 'rotate-45 translate-y-2' : ''"></span>
+        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? 'opacity-0' : ''"></span>
+        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? '-rotate-45 -translate-y-2' : ''"></span>
+      </button>
+    </div>
+
+    <div x-show="open" x-cloak x-transition
+         class="md:hidden flex flex-col gap-4 pt-4 pb-2 px-2 border-t border-mocha/10 mt-3">
+      <a href="/index.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">Home</a>
+      <a href="/menu.html"    class="font-body text-mocha hover:text-amber transition-colors duration-200">Menu</a>
+      <a href="/about.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">About</a>
+      <a href="/contact.html" class="font-body text-rust font-medium">Order Now</a>
+    </div>
+  </header>
+
+  <!-- =====================
+       PAGE BANNER
+       ===================== -->
+  <section class="bg-mocha text-cream py-16 px-6 text-center">
+    <p class="font-body text-amber text-sm tracking-widest uppercase mb-2">Let's Bake Together</p>
+    <h1 class="font-display text-5xl font-bold">Place an Order</h1>
+    <p class="font-body text-cream/65 mt-4 max-w-md mx-auto">
+      Fill out the form below and we'll reply within 24 hours to confirm your order and arrange pickup.
+    </p>
+  </section>
+
+  <!-- =====================
+       ORDER FORM
+       Powered by Web3Forms — https://web3forms.com
+       Steps to activate:
+         1. Go to https://web3forms.com and sign up (free)
+         2. Create an access key for your email address
+         3. Replace YOUR_WEB3FORMS_ACCESS_KEY below with your real key
+       ===================== -->
+  <main class="py-16 px-6">
+    <div class="max-w-2xl mx-auto">
+
+      <!-- Order tips -->
+      <div class="bg-amber/10 border border-amber/30 rounded-xl p-5 mb-10 text-sm text-mocha/70 leading-relaxed">
+        <strong class="text-mocha">Before you order:</strong> Most items require 48–72 hours notice.
+        Custom cakes and large orders need up to a week. Payment is due at pickup.
+        <a href="/menu.html" class="text-rust underline underline-offset-2 hover:text-amber transition-colors">Browse our menu</a> for item availability and pricing.
+      </div>
+
+      <!-- =====================
+           Alpine.js handles:
+           - form submission via fetch (no page redirect)
+           - loading spinner during submit
+           - success / error state display
+           ===================== -->
+      <div x-data="orderForm()">
+
+        <!-- SUCCESS STATE — shown after successful submission -->
+        <div x-show="submitted" x-cloak x-transition
+             class="text-center py-16">
+          <div class="text-6xl mb-4">🎉</div>
+          <h2 class="font-display text-3xl font-bold text-mocha mb-3">Order Received!</h2>
+          <p class="font-body text-mocha/65 max-w-sm mx-auto mb-8">
+            Thanks for reaching out! We'll review your request and get back to you within 24 hours
+            to confirm details and arrange pickup.
+          </p>
+          <button @click="submitted = false; resetForm()"
+                  class="font-body font-medium border border-rust text-rust px-6 py-2.5 rounded-full hover:bg-rust hover:text-cream transition-colors duration-200">
+            Submit Another Order
+          </button>
+        </div>
+
+        <!-- ERROR STATE -->
+        <div x-show="error" x-cloak x-transition
+             class="bg-red-50 border border-red-200 rounded-xl p-5 mb-6 text-sm text-red-700">
+          Something went wrong sending your order. Please try again, or email us directly at
+          <a href="mailto:hello@holysheetbaking.xyz" class="underline">hello@holysheetbaking.xyz</a>.
+        </div>
+
+        <!-- THE FORM -->
+        <form x-show="!submitted" x-cloak
+              @submit.prevent="submitForm($event)"
+              class="space-y-6">
+
+          <!-- Web3Forms access key — REPLACE THIS VALUE -->
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+
+          <!-- Email subject line that appears in your inbox -->
+          <input type="hidden" name="subject" value="New Order Request — Holy Sheet! Baking" />
+
+          <!-- Honeypot spam prevention (leave this hidden) -->
+          <input type="checkbox" name="botcheck" class="hidden" />
+
+          <!-- ── Personal Info ── -->
+          <fieldset class="space-y-4">
+            <legend class="font-display text-xl font-semibold text-mocha mb-2">Your Info</legend>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Name -->
+              <div>
+                <label for="name" class="block text-sm font-medium text-mocha mb-1">Full Name <span class="text-rust">*</span></label>
+                <input
+                  id="name" name="name" type="text" required
+                  placeholder="Jane Smith"
+                  class="w-full bg-white border border-mocha/20 rounded-xl px-4 py-3 text-sm text-mocha placeholder:text-mocha/35 transition-shadow duration-200" />
+              </div>
+
+              <!-- Phone -->
+              <div>
+                <label for="phone" class="block text-sm font-medium text-mocha mb-1">Phone Number</label>
+                <input
+                  id="phone" name="phone" type="tel"
+                  placeholder="(555) 000-0000"
+                  class="w-full bg-white border border-mocha/20 rounded-xl px-4 py-3 text-sm text-mocha placeholder:text-mocha/35 transition-shadow duration-200" />
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-mocha mb-1">Email Address <span class="text-rust">*</span></label>
+              <input
+                id="email" name="email" type="email" required
+                placeholder="jane@example.com"
+                class="w-full bg-white border border-mocha/20 rounded-xl px-4 py-3 text-sm text-mocha placeholder:text-mocha/35 transition-shadow duration-200" />
+            </div>
+          </fieldset>
+
+          <div class="h-px bg-mocha/10"></div>
+
+          <!-- ── Order Details ── -->
+          <fieldset class="space-y-4">
+            <legend class="font-display text-xl font-semibold text-mocha mb-2">Your Order</legend>
+
+            <!-- What you'd like -->
+            <div>
+              <label for="order_details" class="block text-sm font-medium text-mocha mb-1">
+                What would you like to order? <span class="text-rust">*</span>
+              </label>
+              <textarea
+                id="order_details" name="order_details" required rows="4"
+                placeholder="e.g. 1 Classic Sourdough, 6 Butter Croissants, 1 dozen Blueberry Muffins..."
+                class="w-full bg-white border border-mocha/20 rounded-xl px-4 py-3 text-sm text-mocha placeholder:text-mocha/35 resize-none transition-shadow duration-200"></textarea>
+              <p class="text-xs text-mocha/40 mt-1">Be as specific as you can — sizes, flavors, quantities.</p>
+            </div>
+
+            <!-- Dietary restrictions -->
+            <div>
+              <label for="dietary" class="block text-sm font-medium text-mocha mb-1">Dietary Needs or Allergies</label>
+              <textarea
+                id="dietary" name="dietary" rows="2"
+                placeholder="e.g. nut allergy, dairy free, gluten concerns..."
+                class="w-full bg-white border border-mocha/20 rounded-xl px-4 py-3 text-sm text-mocha placeholder:text-mocha/35 resize-none transition-shadow duration-200"></textarea>
+              <p class="text-xs text-mocha/40 mt-1">Note: our kitchen is not allergen-free.</p>
+            </div>
+
+            <!-- Pickup date -->
+            <div>
+              <label for="pickup_date" class="block text-sm font-medium text-mocha mb-1">
+                Desired Pickup Date <span class="text-rust">*</span>
+              </label>
+              <input
+                id="pickup_date" name="pickup_date" type="date" required
+                class="w-full bg-white border border-mocha/20 rounded-xl px-4 py-3 text-sm text-mocha transition-shadow duration-200" />
+              <p class="text-xs text-mocha/40 mt-1">We'll confirm or suggest an alternative when we reply.</p>
+            </div>
+
+            <!-- Occasion -->
+            <div>
+              <label for="occasion" class="block text-sm font-medium text-mocha mb-1">Occasion (optional)</label>
+              <select
+                id="occasion" name="occasion"
+                class="w-full bg-white border border-mocha/20 rounded-xl px-4 py-3 text-sm text-mocha transition-shadow duration-200">
+                <option value="">— Select one —</option>
+                <option value="Personal / Household">Personal / Household</option>
+                <option value="Birthday">Birthday</option>
+                <option value="Anniversary">Anniversary</option>
+                <option value="Holiday">Holiday</option>
+                <option value="Event / Party">Event / Party</option>
+                <option value="Corporate / Office">Corporate / Office</option>
+                <option value="Gift">Gift</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- How did you hear about us -->
+            <div>
+              <label for="referral" class="block text-sm font-medium text-mocha mb-1">How did you hear about us?</label>
+              <select
+                id="referral" name="referral"
+                class="w-full bg-white border border-mocha/20 rounded-xl px-4 py-3 text-sm text-mocha transition-shadow duration-200">
+                <option value="">— Select one —</option>
+                <option value="Word of mouth">Word of mouth</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Instagram">Instagram</option>
+                <option value="Nextdoor">Nextdoor</option>
+                <option value="Google Search">Google Search</option>
+                <option value="Farmers Market">Farmers Market</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- Special notes -->
+            <div>
+              <label for="notes" class="block text-sm font-medium text-mocha mb-1">Anything else we should know?</label>
+              <textarea
+                id="notes" name="notes" rows="3"
+                placeholder="Custom decorations, gift messages, special instructions..."
+                class="w-full bg-white border border-mocha/20 rounded-xl px-4 py-3 text-sm text-mocha placeholder:text-mocha/35 resize-none transition-shadow duration-200"></textarea>
+            </div>
+
+          </fieldset>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            :disabled="loading"
+            class="w-full bg-rust text-cream font-body font-medium py-3.5 rounded-full hover:bg-mocha transition-colors duration-200 disabled:opacity-60 disabled:cursor-wait flex items-center justify-center gap-2">
+
+            <!-- Loading spinner -->
+            <svg x-show="loading" class="animate-spin h-4 w-4 text-cream" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+
+            <span x-text="loading ? 'Sending…' : 'Send Order Request'"></span>
+          </button>
+
+          <p class="text-xs text-center text-mocha/40">
+            We'll reply within 24 hours to confirm your order. No payment is collected here.
+          </p>
+
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =====================
+       FOOTER
+       ===================== -->
+  <footer class="bg-mocha text-cream py-14 px-6 mt-10">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between gap-10">
+
+        <div>
+          <p class="font-display text-2xl font-bold">Holy Sheet!</p>
+          <p class="text-xs tracking-widest uppercase text-cream/50 mt-1 mb-3">Veteran Operated Cottage Bakery</p>
+          <p class="text-sm text-cream/60 max-w-xs">Small batches, big flavor. Handmade with love in [Your City, State].</p>
+        </div>
+
+        <nav class="flex flex-col gap-2 text-sm text-cream/70">
+          <p class="text-cream font-semibold mb-1 tracking-wide text-xs uppercase">Pages</p>
+          <a href="/index.html"   class="hover:text-amber transition-colors">Home</a>
+          <a href="/menu.html"    class="hover:text-amber transition-colors">Menu</a>
+          <a href="/about.html"   class="hover:text-amber transition-colors">About</a>
+          <a href="/contact.html" class="hover:text-amber transition-colors">Order Now</a>
+        </nav>
+
+        <div class="text-sm text-cream/70 space-y-2">
+          <p class="text-cream font-semibold mb-1 tracking-wide text-xs uppercase">Get in Touch</p>
+          <p>📍 Your City, State</p>
+          <p>📧 hello@holysheetbaking.xyz</p>
+          <p>📱 (555) 000-0000</p>
+        </div>
+
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-cream/10 text-xs text-cream/30 text-center">
+        © 2025 Holy Sheet! Baking · All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================
+       Alpine.js Component
+       ===================== -->
+  <script>
+    function orderForm() {
+      return {
+        submitted: false,
+        error:     false,
+        loading:   false,
+
+        async submitForm(e) {
+          this.error   = false;
+          this.loading = true;
+
+          const data = new FormData(e.target);
+
+          try {
+            const res  = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: data,
+            });
+            const json = await res.json();
+
+            if (json.success) {
+              this.submitted = true;
+              e.target.reset();
+            } else {
+              this.error = true;
+            }
+          } catch {
+            this.error = true;
+          }
+
+          this.loading = false;
+        },
+
+        resetForm() {
+          this.submitted = false;
+          this.error     = false;
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

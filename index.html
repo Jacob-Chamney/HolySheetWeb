@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holy Sheet! Baking — Cottage Goods, Baked with Love</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['"DM Sans"', 'sans-serif'],
+          },
+          colors: {
+            cream:  '#F5F0E8',
+            rust:   '#C4511A',
+            amber:  '#C4861A',
+            mocha:  '#3B2F2F',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js (tiny reactive JS) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+  <style>
+    [x-cloak] { display: none !important; }
+
+    @keyframes heroFloat {
+      0%   { transform: scale(1.04) translateY(0px); }
+      50%  { transform: scale(1.04) translateY(-12px); }
+      100% { transform: scale(1.04) translateY(0px); }
+    }
+    .animate-hero-float {
+      animation: heroFloat 8s ease-in-out infinite;
+    }
+  </style>
+</head>
+
+<body class="font-body bg-cream text-mocha">
+
+  <!-- =====================
+       HEADER
+       ===================== -->
+  <header x-data="{ open: false }" class="bg-cream shadow-sm px-6 py-4 sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="/index.html" class="flex flex-col leading-tight">
+        <span class="font-display text-2xl font-bold text-mocha">Holy Sheet!</span>
+        <span class="font-body text-xs font-semibold tracking-widest text-mocha/50 uppercase">Veteran Operated</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="/index.html"   class="font-body text-rust font-medium">Home</a>
+        <a href="/menu.html"    class="font-body text-mocha hover:text-amber transition-colors duration-200">Menu</a>
+        <a href="/about.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">About</a>
+        <a href="/contact.html" class="font-body text-sm text-cream bg-rust px-4 py-2 rounded-full hover:bg-amber transition-colors duration-200">Order Now</a>
+      </nav>
+
+      <!-- Mobile Hamburger -->
+      <button @click="open = !open" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
+        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? 'rotate-45 translate-y-2' : ''"></span>
+        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? 'opacity-0' : ''"></span>
+        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? '-rotate-45 -translate-y-2' : ''"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <div x-show="open" x-cloak x-transition
+         class="md:hidden flex flex-col gap-4 pt-4 pb-2 px-2 border-t border-mocha/10 mt-3">
+      <a href="/index.html"   class="font-body text-rust font-medium">Home</a>
+      <a href="/menu.html"    class="font-body text-mocha hover:text-amber transition-colors duration-200">Menu</a>
+      <a href="/about.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">About</a>
+      <a href="/contact.html" class="font-body text-mocha hover:text-amber transition-colors duration-200">Order Now</a>
+    </div>
+  </header>
+
+  <!-- =====================
+       HERO — solid color background
+       Swap bg-mocha for any color from the palette: bg-rust, bg-amber, bg-cream
+       ===================== -->
+  <section class="w-full min-h-screen bg-mocha flex items-center relative overflow-hidden">
+    <!-- Background texture image with float animation -->
+    <div class="absolute inset-0 bg-[url('/assets/holysheetbg.png')] bg-cover bg-center opacity-20 animate-hero-float pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-6 py-24 relative z-10">
+      <p class="font-body text-amber text-sm tracking-widest uppercase mb-3">Fresh &amp; Made to Order</p>
+      <h1 class="font-display text-5xl md:text-7xl font-bold text-cream leading-tight mb-4">
+        Holy Sheet!<br/>Baking
+      </h1>
+      <p class="font-body text-cream/75 text-lg md:text-xl max-w-md mb-8">
+        Cottage-made pastries &amp; sweets — baked with love in small batches.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/menu.html"
+           class="font-body font-medium bg-rust text-cream px-7 py-3 rounded-full hover:bg-amber transition-colors duration-200">
+          View Our Menu
+        </a>
+        <a href="/contact.html"
+           class="font-body font-medium border border-cream/40 text-cream px-7 py-3 rounded-full hover:bg-cream hover:text-mocha transition-colors duration-200">
+          Place an Order
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================
+       FEATURED ITEMS — edit/replace as needed
+       ===================== -->
+  <section class="py-20 px-6 bg-cream">
+    <div class="max-w-5xl mx-auto">
+
+      <p class="font-body text-rust text-sm tracking-widest uppercase text-center mb-2">What We Bake</p>
+      <h2 class="font-display text-4xl font-bold text-mocha text-center mb-12">A Few of Our Favorites</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+
+        <!-- PHOTO PLACEHOLDER -->
+        <div>
+          <div class="w-full h-64 rounded-2xl bg-mocha/8 border-2 border-dashed border-mocha/20 flex flex-col items-center justify-center gap-2">
+            <span class="text-2xl">📷</span>
+            <p class="text-xs text-mocha/40 font-body text-center px-6">/assets/photo-pastries.png</p>
+          </div>
+          <p class="font-display text-lg font-semibold text-mocha mt-3">Pastries</p>
+          <p class="font-body text-sm text-mocha/60 mt-0.5">Croissants, scones, muffins &amp; more</p>
+        </div>
+
+        <!-- PHOTO PLACEHOLDER -->
+        <div>
+          <div class="w-full h-64 rounded-2xl bg-mocha/8 border-2 border-dashed border-mocha/20 flex flex-col items-center justify-center gap-2">
+            <span class="text-2xl">📷</span>
+            <p class="text-xs text-mocha/40 font-body text-center px-6">/assets/photo-cakes.png</p>
+          </div>
+          <p class="font-display text-lg font-semibold text-mocha mt-3">Cakes &amp; Sweets</p>
+          <p class="font-body text-sm text-mocha/60 mt-0.5">Custom cakes, cupcakes, cookies &amp; more</p>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="/menu.html"
+           class="font-body font-medium text-rust border border-rust px-7 py-3 rounded-full hover:bg-rust hover:text-cream transition-colors duration-200">
+          See the Full Menu
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       ABOUT TEASER
+       ===================== -->
+  <section class="py-20 px-6 bg-mocha text-cream">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+
+      <!-- Text -->
+      <div class="flex-1">
+        <p class="font-body text-amber text-sm tracking-widest uppercase mb-2">Our Story</p>
+        <h2 class="font-display text-4xl font-bold mb-4 leading-tight">Baked from the<br/><em>heart &amp; hearth.</em></h2>
+        <p class="font-body text-cream/75 leading-relaxed mb-6">
+          Holy Sheet! Baking was born out of a simple love for honest food. We're a small, veteran-operated
+          cottage bakery crafting everything by hand in small batches. No preservatives. No shortcuts.
+          Just real ingredients and real care.
+        </p>
+        <a href="/about.html"
+           class="font-body font-medium text-cream border border-cream/40 px-6 py-2.5 rounded-full hover:border-amber hover:text-amber transition-colors duration-200">
+          Read Our Story
+        </a>
+      </div>
+
+      <!-- Decorative block — swap for a photo if you have one -->
+      <div class="flex-1 flex justify-center">
+        <!-- PHOTO PLACEHOLDER — replace this div with:
+             <img src="/assets/photo-owner.jpg" alt="Owner"
+                  class="w-64 h-64 rounded-full object-cover"> -->
+        <div class="w-64 h-64 rounded-full bg-rust/30 border-2 border-dashed border-rust/40 flex flex-col items-center justify-center gap-2 select-none">
+          <span class="text-3xl">📷</span>
+          <p class="text-xs text-cream/50 font-body text-center px-6">/assets/photo-owner.jpg</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================
+       ORDER CTA BANNER
+       ===================== -->
+  <section class="py-20 px-6 bg-amber/10 border-y border-amber/20">
+    <div class="max-w-2xl mx-auto text-center">
+      <p class="font-body text-rust text-sm tracking-widest uppercase mb-2">Ready to Order?</p>
+      <h2 class="font-display text-4xl font-bold text-mocha mb-4">Let's get baking.</h2>
+      <p class="font-body text-mocha/70 mb-8">
+        Fill out our simple order form and we'll be in touch to confirm your order and pickup time.
+        Orders are typically accepted 48–72 hours in advance.
+      </p>
+      <a href="/contact.html"
+         class="font-body font-medium bg-rust text-cream px-8 py-3 rounded-full hover:bg-mocha transition-colors duration-200">
+        Place an Order
+      </a>
+    </div>
+  </section>
+
+  <!-- =====================
+       FOOTER
+       ===================== -->
+  <footer class="bg-mocha text-cream py-14 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between gap-10">
+
+        <!-- Brand -->
+        <div>
+          <p class="font-display text-2xl font-bold">Holy Sheet!</p>
+          <p class="text-xs tracking-widest uppercase text-cream/50 mt-1 mb-3">Veteran Operated Cottage Bakery</p>
+          <p class="text-sm text-cream/60 max-w-xs">Small batches, big flavor. Handmade with love in [Your City, State].</p>
+        </div>
+
+        <!-- Nav -->
+        <nav class="flex flex-col gap-2 text-sm text-cream/70">
+          <p class="text-cream font-semibold mb-1 tracking-wide text-xs uppercase">Pages</p>
+          <a href="/index.html"   class="hover:text-amber transition-colors">Home</a>
+          <a href="/menu.html"    class="hover:text-amber transition-colors">Menu</a>
+          <a href="/about.html"   class="hover:text-amber transition-colors">About</a>
+          <a href="/contact.html" class="hover:text-amber transition-colors">Order Now</a>
+        </nav>
+
+        <!-- Contact Placeholder -->
+        <div class="text-sm text-cream/70 space-y-2">
+          <p class="text-cream font-semibold mb-1 tracking-wide text-xs uppercase">Get in Touch</p>
+          <!-- Update these with your real details -->
+          <p>📍 Your City, State</p>
+          <p>📧 hello@holysheetbaking.xyz</p>
+          <p>📱 (555) 000-0000</p>
+        </div>
+
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-cream/10 text-xs text-cream/30 text-center">
+        © 2025 Holy Sheet! Baking · All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
