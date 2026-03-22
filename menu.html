@@ -9,7 +9,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500&display=swap"
+    rel="stylesheet" />
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,11 +21,11 @@
         extend: {
           fontFamily: {
             display: ['"Playfair Display"', 'serif'],
-            body:    ['"DM Sans"', 'sans-serif'],
+            body: ['"DM Sans"', 'sans-serif'],
           },
           colors: {
             cream: '#F5F0E8',
-            rust:  '#C4511A',
+            rust: '#C4511A',
             amber: '#C4861A',
             mocha: '#3B2F2F',
           }
@@ -36,7 +38,9 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
   <style>
-    [x-cloak] { display: none !important; }
+    [x-cloak] {
+      display: none !important;
+    }
   </style>
 </head>
 
@@ -56,26 +60,30 @@
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-8">
-        <a href="/index.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">Home</a>
-        <a href="/menu.html"    class="font-body text-rust font-medium">Menu</a>
-        <a href="/about.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">About</a>
-        <a href="/contact.html" class="font-body text-sm text-cream bg-rust px-4 py-2 rounded-full hover:bg-amber transition-colors duration-200">Order Now</a>
+        <a href="/index.html" class="font-body text-mocha hover:text-amber transition-colors duration-200">Home</a>
+        <a href="/menu.html" class="font-body text-rust font-medium">Menu</a>
+        <a href="/about.html" class="font-body text-mocha hover:text-amber transition-colors duration-200">About</a>
+        <a href="/contact.html"
+          class="font-body text-sm text-cream bg-rust px-4 py-2 rounded-full hover:bg-amber transition-colors duration-200">Order
+          Now</a>
       </nav>
 
       <!-- Mobile Hamburger -->
       <button @click="open = !open" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
-        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? 'rotate-45 translate-y-2' : ''"></span>
+        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300"
+          :class="open ? 'rotate-45 translate-y-2' : ''"></span>
         <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? 'opacity-0' : ''"></span>
-        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300" :class="open ? '-rotate-45 -translate-y-2' : ''"></span>
+        <span class="block w-6 h-0.5 bg-mocha transition-all duration-300"
+          :class="open ? '-rotate-45 -translate-y-2' : ''"></span>
       </button>
     </div>
 
     <!-- Mobile Nav Drawer -->
     <div x-show="open" x-cloak x-transition
-         class="md:hidden flex flex-col gap-4 pt-4 pb-2 px-2 border-t border-mocha/10 mt-3">
-      <a href="/index.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">Home</a>
-      <a href="/menu.html"    class="font-body text-rust font-medium">Menu</a>
-      <a href="/about.html"   class="font-body text-mocha hover:text-amber transition-colors duration-200">About</a>
+      class="md:hidden flex flex-col gap-4 pt-4 pb-2 px-2 border-t border-mocha/10 mt-3">
+      <a href="/index.html" class="font-body text-mocha hover:text-amber transition-colors duration-200">Home</a>
+      <a href="/menu.html" class="font-body text-rust font-medium">Menu</a>
+      <a href="/about.html" class="font-body text-mocha hover:text-amber transition-colors duration-200">About</a>
       <a href="/contact.html" class="font-body text-mocha hover:text-amber transition-colors duration-200">Order Now</a>
     </div>
   </header>
@@ -110,7 +118,8 @@
         <!-- PHOTO PLACEHOLDER — replace this div with:
              <img src="/assets/photo-pastries.png" alt="Our pastries"
                   class="w-full h-56 object-cover rounded-xl mb-6"> -->
-        <div class="w-full h-56 rounded-xl bg-mocha/8 border-2 border-dashed border-mocha/20 flex flex-col items-center justify-center gap-2 mb-6">
+        <div
+          class="w-full h-56 rounded-xl bg-mocha/8 border-2 border-dashed border-mocha/20 flex flex-col items-center justify-center gap-2 mb-6">
           <span class="text-2xl">📷</span>
           <p class="text-xs text-mocha/40 font-body">/assets/photo-pastries.png</p>
         </div>
@@ -118,7 +127,8 @@
         <div class="flex items-baseline justify-between py-3.5 border-b border-mocha/10">
           <div>
             <p class="font-display font-semibold text-mocha">Butter Croissant</p>
-            <p class="font-body text-sm text-mocha/60 mt-0.5">Classic flaky, laminated pastry made with real European butter.</p>
+            <p class="font-body text-sm text-mocha/60 mt-0.5">Classic flaky, laminated pastry made with real European
+              butter.</p>
             <p class="text-xs text-mocha/40 mt-1 italic">Half dozen: $22</p>
           </div>
           <span class="font-body text-rust font-medium text-sm shrink-0 ml-6">$4 each</span>
@@ -127,7 +137,8 @@
         <div class="flex items-baseline justify-between py-3.5 border-b border-mocha/10">
           <div>
             <p class="font-display font-semibold text-mocha">Blueberry Muffins</p>
-            <p class="font-body text-sm text-mocha/60 mt-0.5">Domed and loaded with fresh blueberries. Tender crumb with a crunchy sugar top.</p>
+            <p class="font-body text-sm text-mocha/60 mt-0.5">Domed and loaded with fresh blueberries. Tender crumb with
+              a crunchy sugar top.</p>
             <p class="text-xs text-mocha/40 mt-1 italic">Dozen: $38</p>
           </div>
           <span class="font-body text-rust font-medium text-sm shrink-0 ml-6">$3.50 each</span>
@@ -136,7 +147,8 @@
         <div class="flex items-baseline justify-between py-3.5 border-b border-mocha/10">
           <div>
             <p class="font-display font-semibold text-mocha">Glazed Scones</p>
-            <p class="font-body text-sm text-mocha/60 mt-0.5">Buttery, crumbly scones with seasonal fruit or classic cream and vanilla glaze.</p>
+            <p class="font-body text-sm text-mocha/60 mt-0.5">Buttery, crumbly scones with seasonal fruit or classic
+              cream and vanilla glaze.</p>
           </div>
           <span class="font-body text-rust font-medium text-sm shrink-0 ml-6">$4 each</span>
         </div>
@@ -144,7 +156,8 @@
         <div class="flex items-baseline justify-between py-3.5 border-b border-mocha/10">
           <div>
             <p class="font-display font-semibold text-mocha">Hand Pies</p>
-            <p class="font-body text-sm text-mocha/60 mt-0.5">Flaky pastry pockets filled with seasonal fruit or a savory filling. Ask about current flavors.</p>
+            <p class="font-body text-sm text-mocha/60 mt-0.5">Flaky pastry pockets filled with seasonal fruit or a
+              savory filling. Ask about current flavors.</p>
           </div>
           <span class="font-body text-rust font-medium text-sm shrink-0 ml-6">$5 each</span>
         </div>
@@ -160,7 +173,8 @@
         <!-- PHOTO PLACEHOLDER — replace this div with:
              <img src="/assets/photo-cakes.png" alt="Our cakes and sweets"
                   class="w-full h-56 object-cover rounded-xl mb-6"> -->
-        <div class="w-full h-56 rounded-xl bg-mocha/8 border-2 border-dashed border-mocha/20 flex flex-col items-center justify-center gap-2 mb-6">
+        <div
+          class="w-full h-56 rounded-xl bg-mocha/8 border-2 border-dashed border-mocha/20 flex flex-col items-center justify-center gap-2 mb-6">
           <span class="text-2xl">📷</span>
           <p class="text-xs text-mocha/40 font-body">/assets/photo-cakes.png</p>
         </div>
@@ -168,7 +182,8 @@
         <div class="flex items-baseline justify-between py-3.5 border-b border-mocha/10">
           <div>
             <p class="font-display font-semibold text-mocha">Custom Sheet Cake</p>
-            <p class="font-body text-sm text-mocha/60 mt-0.5">Fully customizable flavors, fillings, and decor. 48-hour notice required.</p>
+            <p class="font-body text-sm text-mocha/60 mt-0.5">Fully customizable flavors, fillings, and decor. 48-hour
+              notice required.</p>
           </div>
           <span class="font-body text-rust font-medium text-sm shrink-0 ml-6">From $45</span>
         </div>
@@ -176,7 +191,8 @@
         <div class="flex items-baseline justify-between py-3.5 border-b border-mocha/10">
           <div>
             <p class="font-display font-semibold text-mocha">Cupcakes</p>
-            <p class="font-body text-sm text-mocha/60 mt-0.5">Moist, fluffy cupcakes with a generous swirl of buttercream. Assorted flavors available.</p>
+            <p class="font-body text-sm text-mocha/60 mt-0.5">Moist, fluffy cupcakes with a generous swirl of
+              buttercream. Assorted flavors available.</p>
             <p class="text-xs text-mocha/40 mt-1 italic">Dozen: $42</p>
           </div>
           <span class="font-body text-rust font-medium text-sm shrink-0 ml-6">$4 each</span>
@@ -185,7 +201,8 @@
         <div class="flex items-baseline justify-between py-3.5 border-b border-mocha/10">
           <div>
             <p class="font-display font-semibold text-mocha">Cookie Box</p>
-            <p class="font-body text-sm text-mocha/60 mt-0.5">A curated mix of our seasonal cookies — chocolate chip, snickerdoodle, and a rotating specialty.</p>
+            <p class="font-body text-sm text-mocha/60 mt-0.5">A curated mix of our seasonal cookies — chocolate chip,
+              snickerdoodle, and a rotating specialty.</p>
           </div>
           <span class="font-body text-rust font-medium text-sm shrink-0 ml-6">$20 / dozen</span>
         </div>
@@ -193,7 +210,8 @@
         <div class="flex items-baseline justify-between py-3.5 border-b border-mocha/10">
           <div>
             <p class="font-display font-semibold text-mocha">Brownies</p>
-            <p class="font-body text-sm text-mocha/60 mt-0.5">Dense, fudgy, and deeply chocolaty. Half-pan and full-pan sizes available for events.</p>
+            <p class="font-body text-sm text-mocha/60 mt-0.5">Dense, fudgy, and deeply chocolaty. Half-pan and full-pan
+              sizes available for events.</p>
             <p class="text-xs text-mocha/40 mt-1 italic">Half pan: $22 · Full pan: $40</p>
           </div>
           <span class="font-body text-rust font-medium text-sm shrink-0 ml-6">$3 each</span>
@@ -217,7 +235,8 @@
         <div class="flex items-baseline justify-between py-3.5 border-b border-mocha/10">
           <div>
             <p class="font-display font-semibold text-mocha">Pumpkin Spice Loaf</p>
-            <p class="font-body text-sm text-mocha/60 mt-0.5">Warmly spiced pumpkin loaf with a cream cheese drizzle.</p>
+            <p class="font-body text-sm text-mocha/60 mt-0.5">Warmly spiced pumpkin loaf with a cream cheese drizzle.
+            </p>
             <p class="text-xs text-amber mt-1 italic">Available Sept – Nov</p>
           </div>
           <span class="font-body text-rust font-medium text-sm shrink-0 ml-6">$10</span>
@@ -226,7 +245,8 @@
         <div class="flex items-baseline justify-between py-3.5 border-b border-mocha/10">
           <div>
             <p class="font-display font-semibold text-mocha">Strawberry Galette</p>
-            <p class="font-body text-sm text-mocha/60 mt-0.5">Rustic free-form tart with fresh local strawberries and a buttery, flaky crust.</p>
+            <p class="font-body text-sm text-mocha/60 mt-0.5">Rustic free-form tart with fresh local strawberries and a
+              buttery, flaky crust.</p>
             <p class="text-xs text-amber mt-1 italic">Available May – July</p>
           </div>
           <span class="font-body text-rust font-medium text-sm shrink-0 ml-6">$16</span>
@@ -246,7 +266,7 @@
       Orders require 48–72 hours notice. Large or custom orders may need more lead time.
     </p>
     <a href="/contact.html"
-       class="font-body font-medium bg-rust text-cream px-8 py-3 rounded-full hover:bg-amber transition-colors duration-200">
+      class="font-body font-medium bg-rust text-cream px-8 py-3 rounded-full hover:bg-amber transition-colors duration-200">
       Order Now
     </a>
   </section>
@@ -254,29 +274,33 @@
   <!-- =====================
        FOOTER
        ===================== -->
-  <footer class="bg-mocha text-cream py-14 px-6 border-t border-cream/10">
+  <footer class="bg-mocha text-cream py-14 px-6">
     <div class="max-w-5xl mx-auto">
       <div class="flex flex-col md:flex-row justify-between gap-10">
 
+        <!-- Brand -->
         <div>
           <p class="font-display text-2xl font-bold">Holy Sheet!</p>
-          <p class="text-xs tracking-widest uppercase text-cream/50 mt-1 mb-3">Veteran Operated Cottage Bakery</p>
-          <p class="text-sm text-cream/60 max-w-xs">Small batches, big flavor. Handmade with love in [Your City, State].</p>
+          <p class="text-xs tracking-widest uppercase text-cream/50 mt-1 mb-3">Veteran Operated Bakery</p>
+          <p class="text-sm text-cream/60 max-w-xs">Small batches, big flavor. Handmade with love in Noble, OK
+          </p>
         </div>
 
+        <!-- Nav -->
         <nav class="flex flex-col gap-2 text-sm text-cream/70">
           <p class="text-cream font-semibold mb-1 tracking-wide text-xs uppercase">Pages</p>
-          <a href="/index.html"   class="hover:text-amber transition-colors">Home</a>
-          <a href="/menu.html"    class="hover:text-amber transition-colors">Menu</a>
-          <a href="/about.html"   class="hover:text-amber transition-colors">About</a>
+          <a href="/index.html" class="hover:text-amber transition-colors">Home</a>
+          <a href="/menu.html" class="hover:text-amber transition-colors">Menu</a>
+          <a href="/about.html" class="hover:text-amber transition-colors">About</a>
           <a href="/contact.html" class="hover:text-amber transition-colors">Order Now</a>
         </nav>
 
+        <!-- Contact Placeholder -->
         <div class="text-sm text-cream/70 space-y-2">
           <p class="text-cream font-semibold mb-1 tracking-wide text-xs uppercase">Get in Touch</p>
-          <p>📍 Your City, State</p>
-          <p>📧 hello@holysheetbaking.xyz</p>
-          <p>📱 (555) 000-0000</p>
+          <a href="mailto:holysheetbaking@gmail.com?subject=Order Inquiry">holysheetbaking@gmail.com</a>
+          <p>(405) 210-8309</p>
+          <a href="tel:+14052108309">Call</a> or <a href="sms:+14052108309">Text</a>
         </div>
 
       </div>
@@ -287,5 +311,7 @@
     </div>
   </footer>
 
+
 </body>
+
 </html>
